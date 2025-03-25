@@ -2,6 +2,7 @@ import express from "express";
 import path from "node:path";
 import indexRouter from "./routes/indexRouter.js";
 import formRouter from "./routes/formRouter.js";
+import postRouter from "./routes/postRouter.js";
 
 const app = express();
 const assetsPath = path.join(path.resolve(), "public");
@@ -13,6 +14,7 @@ app.use(express.static(assetsPath));
 
 app.use("/", indexRouter);
 app.use("/new", formRouter);
+app.use("/view", postRouter);
 
 const PORT = 3000;
 app.listen(PORT, () => {
