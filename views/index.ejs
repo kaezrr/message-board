@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
     <title><%= title %></title>
 </head>
 <body>
     <h1><%= title %></h1>
     <% messages.forEach(message => { %>
     <div class="message">
-        <p><%= message.text %> - <%= message.user %></p>
-        <p>on <%= format(message.added, 'dd E Y') %></p>
+        <p><%= message.text %> </p>
+        <p>- <%= message.user %> on <%= format(message.added, 'dd E y') %></p>
     </div>
     <% }) %>
         <a href="/new"><button >Say Something!</button></a>
