@@ -9,8 +9,8 @@
 <body>
     <h1>Post Details</h1>
     <div class="message">
-        <p><%= message.text %> </p>
-        <p>- <%= message.user %> on <%= format(message.added, 'dd E y') %></p>
+        <p><%= message.message %> </p>
+        <p>- <%= message.username %> on <%= format(new Date(message.date), 'dd MMM y') %></p>
     </div>
     <a href="/"><button >Return to home</button></a>
 </body>

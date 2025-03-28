@@ -8,10 +8,10 @@
 </head>
 <body>
     <h1><%= title %></h1>
-    <% messages.forEach((message, i) => { %>
+    <% messages.forEach(message => { %>
     <div class="message">
-        <p><%= message.text %> </p><a href="/view?id=<%=i%>">More...</a>
-        <p>- <%= message.user %> on <%= format(message.added, 'dd E y') %></p>
+        <p><%= message.message %> </p><a href="/view?id=<%=message.id%>">More...</a>
+        <p>- <%= message.username %> on <%= format(new Date(message.date), 'dd MMM y') %></p>
     </div>
     <% }) %>
         <a href="/new"><button >Say Something!</button></a>

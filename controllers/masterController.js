@@ -1,26 +1,14 @@
 const { format } = require("date-fns");
-
-const messages = [
-    {
-        text: "Hi there!",
-        user: "Amando",
-        added: new Date(),
-    },
-    {
-        text: "Hello World!",
-        user: "Charles",
-        added: new Date(),
-    },
-];
+const db = require("../db/queries");
 
 async function showPost(req, res) {
     const id = req.query.id;
-    if (id < 0 || id >= messages.length) {
+    if (!id) {
         res.status(404).send("Message not found.");
         return;
     }
-
-    res.render("post", { format, message: messages[id] });
+    const message = await db.getMessage(id);
+    res.render("post", { format, message });
 }
 
 async function createPostGet(req, res) {
@@ -28,15 +16,12 @@ async function createPostGet(req, res) {
 }
 
 async function createPostPost(req, res) {
-    messages.push({
-        text: req.body.messageText,
-        user: req.body.messageAuthor,
-        added: new Date(),
-    });
+    await db.insertMessage(req.body.messageAuthor, req.body.messageText);
     res.redirect("/");
 }
 
 async function showPosts(req, res) {
+    const messages = await db.getMessages();
     res.render("index", {
         title: "Mini Messageboard",
         messages,
